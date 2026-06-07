@@ -1,4 +1,4 @@
-import{r as Ft,a as _i,w as hl,j as Qe,b as pl,M as Sa,I as ml,g as Tt}from"./index-DDtTQ4c3.js";/**
+import{r as Ft,a as _i,w as hl,j as Qe,M as Sa,b as pl,I as ml,g as Tt}from"./index-C1UCJXOC.js";/**
  * @license
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT
@@ -4037,7 +4037,7 @@ void main() {
 	`;return i.precision==="highp"?e+=`
 #define HIGH_PRECISION`:i.precision==="mediump"?e+=`
 #define MEDIUM_PRECISION`:i.precision==="lowp"&&(e+=`
-#define LOW_PRECISION`),e}const qh={[sr]:"SHADOWMAP_TYPE_PCF",[yi]:"SHADOWMAP_TYPE_VSM"};function Yh(i){return qh[i.shadowMapType]||"SHADOWMAP_TYPE_BASIC"}const Kh={[Hn]:"ENVMAP_TYPE_CUBE",[di]:"ENVMAP_TYPE_CUBE",[_r]:"ENVMAP_TYPE_CUBE_UV"};function Zh(i){return i.envMap===!1?"ENVMAP_TYPE_CUBE":Kh[i.envMapMode]||"ENVMAP_TYPE_CUBE"}const jh={[di]:"ENVMAP_MODE_REFRACTION"};function $h(i){return i.envMap===!1?"ENVMAP_MODE_REFLECTION":jh[i.envMapMode]||"ENVMAP_MODE_REFLECTION"}const Jh={[Eo]:"ENVMAP_BLENDING_MULTIPLY",[Ol]:"ENVMAP_BLENDING_MIX",[Bl]:"ENVMAP_BLENDING_ADD"};function Qh(i){return i.envMap===!1?"ENVMAP_BLENDING_NONE":Jh[i.combine]||"ENVMAP_BLENDING_NONE"}function ep(i){const e=i.envMapCubeUVHeight;if(e===null)return null;const t=Math.log2(e)-2,n=1/e;return{texelWidth:1/(3*Math.max(Math.pow(2,t),7*16)),texelHeight:n,maxMip:t}}function tp(i,e,t,n){const r=i.getContext(),s=t.defines;let a=t.vertexShader,o=t.fragmentShader;const c=Yh(t),l=Zh(t),f=$h(t),h=Qh(t),u=ep(t),m=Bh(t),v=zh(s),E=r.createProgram();let p,d,M=t.glslVersion?"#version "+t.glslVersion+`
+#define LOW_PRECISION`),e}const qh={[sr]:"SHADOWMAP_TYPE_PCF",[yi]:"SHADOWMAP_TYPE_VSM"};function Yh(i){return qh[i.shadowMapType]||"SHADOWMAP_TYPE_BASIC"}const Kh={[Hn]:"ENVMAP_TYPE_CUBE",[di]:"ENVMAP_TYPE_CUBE",[_r]:"ENVMAP_TYPE_CUBE_UV"};function Zh(i){return i.envMap===!1?"ENVMAP_TYPE_CUBE":Kh[i.envMapMode]||"ENVMAP_TYPE_CUBE"}const jh={[di]:"ENVMAP_MODE_REFRACTION"};function $h(i){return i.envMap===!1?"ENVMAP_MODE_REFLECTION":jh[i.envMapMode]||"ENVMAP_MODE_REFLECTION"}const Jh={[Eo]:"ENVMAP_BLENDING_MULTIPLY",[Ol]:"ENVMAP_BLENDING_MIX",[Bl]:"ENVMAP_BLENDING_ADD"};function Qh(i){return i.envMap===!1?"ENVMAP_BLENDING_NONE":Jh[i.combine]||"ENVMAP_BLENDING_NONE"}function ep(i){const e=i.envMapCubeUVHeight;if(e===null)return null;const t=Math.log2(e)-2,n=1/e;return{texelWidth:1/(3*Math.max(Math.pow(2,t),112)),texelHeight:n,maxMip:t}}function tp(i,e,t,n){const r=i.getContext(),s=t.defines;let a=t.vertexShader,o=t.fragmentShader;const c=Yh(t),l=Zh(t),f=$h(t),h=Qh(t),u=ep(t),m=Bh(t),v=zh(s),E=r.createProgram();let p,d,M=t.glslVersion?"#version "+t.glslVersion+`
 `:"";t.isRawShaderMaterial?(p=["#define SHADER_TYPE "+t.shaderType,"#define SHADER_NAME "+t.shaderName,v].filter(Ai).join(`
 `),p.length>0&&(p+=`
 `),d=["#define SHADER_TYPE "+t.shaderType,"#define SHADER_NAME "+t.shaderName,v].filter(Ai).join(`
