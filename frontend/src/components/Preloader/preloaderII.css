@@ -65,11 +65,11 @@
     background-color: var(--base-100);
     -webkit-mask:
         linear-gradient(var(--base-300), var(--base-300)),
-        url("../../../public/preloader-bg.svg") center/var(--preloader-capsule-width) auto no-repeat;
+        url("/preloader-bg.svg") center/var(--preloader-capsule-width) auto no-repeat;
     -webkit-mask-composite: source-out;
     mask:
         linear-gradient(var(--base-300), var(--base-300)),
-        url("../../../public/preloader-bg.svg") center/var(--preloader-capsule-width) auto no-repeat;
+        url("/preloader-bg.svg") center/var(--preloader-capsule-width) auto no-repeat;
     mask-composite: subtract;
     will-change: transform;
     z-index: 3;
