@@ -1,12 +1,12 @@
 {
-  "name": "pousada-vila-refugio",
+  "name": "vila-refugio-hotel",
   "private": true,
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
-    "dev": "npm --prefix frontend run dev",
-    "build": "npm --prefix frontend run build",
-    "preview": "npm --prefix frontend run preview"
-  },
-  "dependencies": {
-    "react-responsive": "^10.0.1"
+    "dev": "npm --workspace frontend run dev",
+    "build": "npm --workspace frontend run build",
+    "preview": "npm --workspace frontend run preview"
   }
 }
