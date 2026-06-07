@@ -1,44 +1,44 @@
 export const feedbackH1LG = [
     [
-        "Staying at Capsules® in the",
-        "California desert redefined my",
-        "retreat — modern design meets",
-        "nature, and every sunset feels",
-        "like a serene masterpiece."
+        "Hospedar-se na Vila Refúgio na",
+        "serra brasileira redefiniu meu",
+        "conceito de descanso — o design",
+        "moderno encontra a natureza, e cada",
+        "pôr do sol é uma obra de arte."
     ],
     [
-        "Capsules® offered the perfect",
-        "escape — sleek, modern spaces",
-        "surrounded by desert stillness.",
-        "Each moment felt peaceful,",
-        "grounded, and truly unique."
+        "A Vila Refúgio proporcionou o",
+        "escape perfeito — espaços modernos",
+        "e elegantes em meio à quietude.",
+        "Cada momento foi de paz profunda,",
+        "conexão e pura singularidade."
     ],
     [
-        "Capsules® was the perfect",
-        "desert hideaway — stylish,",
-        "peaceful, and fully surrounded",
-        "by stunning views day and",
-        " night."
+        "Um refúgio extraordinário na serra.",
+        "Estilo impecável, tranquilidade absoluta",
+        "e vistas de tirar o fôlego",
+        "durante todo o dia e sob o",
+        "céu estrelado da noite."
     ]
 ];
 
 export const feedbackReviewLG = [
     [
-        "Marcus Simpson",
-        "New York",
+        "Marcos Silveira",
+        "São Paulo - SP",
         "review1",
         "33%"
     ],
     [
-        "Lena Morrison",
-        "Los Angeles",
+        "Helena Vasconcellos",
+        "Rio de Janeiro - RJ",
         "review2",
         "66%"
     ],
     [
-        "Jason Whitaker",
-        "San Francisco",
+        "Juliano Werneck",
+        "Belo Horizonte - MG",
         "review3",
         "100%"
     ]
-];
+];

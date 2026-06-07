@@ -1,99 +1,72 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import './marqueetext.css';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import "./marqueetext.css";
 
 const MarqueeText = () => {
+    const rootRef = useRef(null);
     const animationRef = useRef(null);
     const isForwardRef = useRef(true);
-    const starRotationRef = useRef(0); // Track current rotation
 
     useEffect(() => {
-        // Start with default forward animation
-        const startMarqueeAnimation = (direction = 'forward') => {
-            // Kill any existing animation first
-            if (animationRef.current) {
-                animationRef.current.kill();
-            }
+        const root = rootRef.current;
+        if (!root) return;
 
-            const duration = 10; // Fixed duration (lower = faster)
-            const repeatDelay = 0;
+        const rows = gsap.utils.toArray(root.querySelectorAll(".marquee-text-marquee"));
+        const stars = gsap.utils.toArray(root.querySelectorAll(".star-rotate"));
 
-            if (direction === 'forward') {
-                animationRef.current = gsap.to(".marquee-text-marquee", {
-                    x: '-200%',
-                    duration: duration,
-                    repeat: -1,
-                    ease: "none",
-                    modifiers: {
-                        x: gsap.utils.unitize(x => parseFloat(x) % 100)
-                    }
-                });
+        const startMarqueeAnimation = (direction = "forward") => {
+            animationRef.current?.kill();
 
-                // Scroll down: rotate clockwise 90deg from current position
-                gsap.to(".star-rotate", {
-                    rotation: `+=110`, // Rotate clockwise 90 degrees
-                    duration: 0.5,
-                    ease: "power2.out"
-                });
-            } else {
-                animationRef.current = gsap.to(".marquee-text-marquee", {
-                    x: '0%',
-                    duration: duration,
-                    repeat: -1,
-                    ease: "none",
-                    modifiers: {
-                        x: gsap.utils.unitize(x => parseFloat(x) % 100)
-                    }
-                });
+            animationRef.current = gsap.to(rows, {
+                x: direction === "forward" ? "-200%" : "0%",
+                duration: 10,
+                repeat: -1,
+                ease: "none",
+                modifiers: {
+                    x: gsap.utils.unitize((x) => parseFloat(x) % 100),
+                },
+            });
 
-                // Scroll up: rotate anti-clockwise 90deg from current position
-                gsap.to(".star-rotate", {
-                    rotation: `-=110`, // Rotate anti-clockwise 90 degrees
-                    duration: 0.5,
-                    ease: "power2.out"
-                });
-            }
+            gsap.to(stars, {
+                rotation: direction === "forward" ? "+=110" : "-=110",
+                duration: 0.5,
+                ease: "power2.out",
+            });
         };
 
-        // Start initial animation
-        startMarqueeAnimation('forward');
+        startMarqueeAnimation("forward");
         isForwardRef.current = true;
 
         const handleWheel = (event) => {
-            const newDirection = event.deltaY > 0 ? 'forward' : 'reverse';
+            const newDirection = event.deltaY > 0 ? "forward" : "reverse";
+            const changedDirection =
+                (newDirection === "forward" && !isForwardRef.current) ||
+                (newDirection === "reverse" && isForwardRef.current);
 
-            // Only change direction if it's different from current
-            if ((newDirection === 'forward' && !isForwardRef.current) ||
-                (newDirection === 'reverse' && isForwardRef.current)) {
-                isForwardRef.current = newDirection === 'forward';
-                startMarqueeAnimation(newDirection);
-            }
+            if (!changedDirection) return;
+            isForwardRef.current = newDirection === "forward";
+            startMarqueeAnimation(newDirection);
         };
 
-        // Add wheel event listener
-        window.addEventListener("wheel", handleWheel);
+        window.addEventListener("wheel", handleWheel, { passive: true });
 
-        // Cleanup function
         return () => {
             window.removeEventListener("wheel", handleWheel);
-            if (animationRef.current) {
-                animationRef.current.kill();
-            }
+            animationRef.current?.kill();
         };
     }, []);
 
-    // Create multiple marquee items
-    const marqueeItems = Array(6).fill(null).map((_, index) => (
+    const marqueeItems = Array.from({ length: 6 }, (_, index) => (
         <div key={index} className="marquee-text-marquee">
-            <h1>Why Capsules®?<span className='star-rotate'>*</span></h1>
+            <h1>
+                Por que Vila Refúgio®?<span className="star-rotate">*</span>
+            </h1>
         </div>
     ));
 
     return (
-        <div className="marquee-text-container">
-            <div className="marquee-text-move">
-                {marqueeItems}
-            </div>
+        <div ref={rootRef} className="marquee-text-container">
+            <div className="marquee-text-move">{marqueeItems}</div>
         </div>
     );
 };

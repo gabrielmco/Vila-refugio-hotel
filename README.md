@@ -1,45 +1,112 @@
-# 🏆 Capsule - Awwwards SOTD Clone
+# Vila Refúgio Hotel
 
-![Capsule Showcase](https://raw.githubusercontent.com/ShowravKormokar/capsule/refs/heads/main/frontend/src/assets/showcase-img.png)
+Site institucional da **Vila Refúgio Hotel**, desenvolvido por Gabriel M. C. para apresentar chalés, experiências, áreas de lazer e canais de contato em uma experiência visual premium.
 
+Este repositório é o projeto oficial do site da Vila Refúgio Hotel, desenvolvido e organizado para representar a identidade da marca Vila Refúgio.
 
-# > ⚠️ **This Website Is Still Under Construction. Not fully responsive yet. Try to see in desktop mode (1200px to 1900px width). Thanks🚨☠️**
+## Visão geral
 
-A faithful React.js clone of the **"awwwards"** ([Awwwards.com](https://www.awwwards.com/sites/capsules-r)) SOTD-winning **"Capsule"** website by Moyra ([capsule.moyra.co](https://capsule.moyra.co)), which won Awwwards Site of the Day. This project was built for learning purposes to master advanced frontend techniques like scroll-triggered animations, smooth page transitions, and responsive design.
-- React Vite (version: 19.1.0)
-- React Router Dom (Version: 7.6.2)
-- Tailwind CSS (Version: 4.1.8)
-- GSAP (Version: 2.1.2)
+- Interface em React com Vite.
+- Animações e transições com GSAP.
+- Scroll suave com Lenis.
+- Estilos com Tailwind CSS 4 e CSS modular por componente.
+- Deploy planejado para GitHub Pages em `/capsule/`.
 
-## 🚀 Live Demo
+## Tecnologias
 
-[View Live Project](https://showravkormokar.github.io/capsule/)
+- React 19
+- Vite 6
+- React Router 7
+- Tailwind CSS 4
+- GSAP 3
+- Lenis
+- Three.js
+- React Icons
 
-## ✨ Features
+## Como rodar localmente
 
-- **Smooth Animations:** Recreated the sophisticated scroll-driven animations from the original site using GSAP.
-- **Modern Stack:** Built with a cutting-edge tech stack including React, Vite, and Tailwind CSS.
-- **Fully Responsive:** Designed to provide a seamless experience across all device sizes.
-- **Pixel-Perfect UI:** Focused on replicating the original design's visual appeal and user interface details.
+Instale as dependências do frontend:
 
-## 🛠️ Tech Stack
+```bash
+cd frontend
+npm install
+```
 
-- **Frontend Framework:** [React](https://reactjs.org/) with [Vite](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Animations:** [GSAP (GreenSock Animation Platform)](https://gsap.com/)
-- **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
-- **Package Manager:** npm / yarn
+Rode o servidor de desenvolvimento:
 
-## 📦 Installation & Setup
+```bash
+npm run dev
+```
 
-To run this project locally, follow these steps:
+O projeto usa `base: '/capsule/'`, então em desenvolvimento o endereço padrão fica:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/showravkormokar/capsule.git
-   cd capsule
+```text
+http://localhost:5173/capsule/
+```
 
-## 🪧 Notice
+## Scripts principais
 
-To build this website only study perpose and understanding animation and increase design knowledge.
-All rights reserve ([capsule.moyra.co](https://capsule.moyra.co))
+Na raiz:
+
+```bash
+npm run dev
+npm run build
+npm run preview
+```
+
+No frontend:
+
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
+
+## Publicação no GitHub
+
+Repositório de destino:
+
+```text
+https://github.com/gabrielmco/Vila-refugio-hotel.git
+```
+
+Para conectar este projeto ao repositório remoto:
+
+```bash
+git remote add origin https://github.com/gabrielmco/Vila-refugio-hotel.git
+git branch -M main
+git push -u origin main
+```
+
+Se o remoto `origin` já existir, atualize a URL:
+
+```bash
+git remote set-url origin https://github.com/gabrielmco/Vila-refugio-hotel.git
+git branch -M main
+git push -u origin main
+```
+
+## Estrutura
+
+```text
+frontend/
+  public/
+  src/
+    assets/
+    components/
+    constants/
+    layouts/
+    lib/
+    pages/
+```
+
+## Observações de produção
+
+- Arquivos de auditoria, screenshots locais, `dist` e `node_modules` não devem ser versionados.
+- Links de contato podem ser mantidos como placeholders enquanto os dados oficiais não forem definidos.
+- Antes de publicar, rode `npm run lint` e `npm run build` dentro de `frontend`.
+
+## Autor
+
+Projeto desenvolvido e mantido por **Gabriel M. C.**

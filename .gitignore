@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+dist-ssr/
+frontend/dist/
+frontend/dist-ssr/
+.vite/
+frontend/.vite/
+coverage/
+frontend/coverage/
+
+# Local environment files
+*.local
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+
+# Local audit and screenshot artifacts
+frontend/screenshots/
+frontend/audit-*/
+screenshots/
+audit-*/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+frontend/.cache/
+
+# Editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

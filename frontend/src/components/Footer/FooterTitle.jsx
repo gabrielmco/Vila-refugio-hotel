@@ -1,8 +1,8 @@
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { SplitText } from 'gsap/SplitText';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import React, { useRef } from 'react';
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 import "./footertitle.css";
 
@@ -10,81 +10,89 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const FooterTitle = () => {
     const ftConRef = useRef(null);
+    const mountedRef = useRef(true);
+
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
 
     useGSAP(() => {
-        if (!ftConRef.current) return;
+        const root = ftConRef.current;
+        if (!root) return;
 
-        // Get the original HTML before splitting
-        const originalHTML = ftConRef.current.querySelector(".footer-title h1").innerHTML;
+        const h1 = root.querySelector(".footer-title h1");
+        const originalHTML = h1?.innerHTML || "";
+        let splitObj = null;
+        let tween = null;
 
-        // Create split - exclude the sub element from being split
-        const split = new SplitText(".footer-title h1", {
-            type: "chars",
-            charsClass: "ftChar",
-            // Exclude the <sub> element from being split
-            exclude: "sub"
-        });
+        document.fonts.ready.then(() => {
+            if (!ftConRef.current || !mountedRef.current) return;
 
-        // Wrap each character in a span for animation
-        split.chars.forEach(char => {
-            char.innerHTML = `<span>${char.innerHTML}</span>`;
-        });
+            const split = new SplitText(h1, {
+                type: "chars",
+                charsClass: "ftChar",
+                exclude: "sub",
+            });
+            splitObj = split;
 
-        const innerChars = split.chars.map(c => c.querySelector("span"));
+            split.chars.forEach((char) => {
+                char.innerHTML = `<span>${char.innerHTML}</span>`;
+            });
 
-        // Handle the sub element separately
-        const sub = ftConRef.current.querySelector(".footer-title sub");
-        if (sub) {
-            sub.innerHTML = `<span>${sub.innerHTML}</span>`;
-            const subSpan = sub.querySelector("span");
-
-            // Add to innerChars array
-            innerChars.push(subSpan);
-        }
-
-        // Initial state - start from left (-120%)
-        gsap.set(innerChars, { x: "-120%" });
-
-        // Animation - move to normal position
-        gsap.to(innerChars, {
-            x: "0%",
-            stagger: 0.02, // Add stagger for character-by-character reveal
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: ftConRef.current,
-                start: "top 90%",
-                end: "top 80%",
-                scrub: true,
-                // markers: true
+            const innerChars = split.chars.map((char) => char.querySelector("span"));
+            const sub = root.querySelector(".footer-title sub");
+            if (sub) {
+                sub.innerHTML = `<span>${sub.innerHTML}</span>`;
+                innerChars.push(sub.querySelector("span"));
             }
+
+            const targets = innerChars.filter(Boolean);
+            gsap.set(targets, { x: "-120%" });
+
+            tween = gsap.to(targets, {
+                x: "0%",
+                stagger: 0.045,
+                duration: 1.6,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: root,
+                    start: "top 100%",
+                    end: "top 35%",
+                    scrub: 1.8,
+                    refreshPriority: 120,
+                },
+            });
         });
 
-        // Cleanup - revert the split and restore original HTML
         return () => {
-            split.revert();
-            // Restore the original HTML with sub element
-            ftConRef.current.querySelector(".footer-title h1").innerHTML = originalHTML;
+            tween?.scrollTrigger?.kill();
+            tween?.kill();
+            splitObj?.revert();
+            const currentH1 = ftConRef.current?.querySelector(".footer-title h1");
+            if (currentH1) currentH1.innerHTML = originalHTML;
         };
-
     }, { scope: ftConRef });
 
     return (
-        <section ref={ftConRef} className='relative z-1 w-screen h-[40vh] border-1 border-t-[#c4c1b9]'>
-            <div className='w-full flex justify-between items-center px-6 mt-8'>
-                <p className='text-[#b1a696] text-[0.7rem]'>
-                    Website made by—<a href="#" className='text-[#f2ede5]'>Moyra.co</a>
+        <section ref={ftConRef} className="relative z-1 w-screen h-[52vh] overflow-visible border-1 border-t-[#c4c1b9]">
+            <div className="w-full flex justify-between items-center px-6 mt-8">
+                <p className="text-[#b1a696] text-[0.7rem]">
+                    Website made by <a href="#" className="text-[#f2ede5]">Moyra.co</a>
                 </p>
-                <p className='text-[#b1a696] text-[0.7rem]'>
-                    This website is using <a href="#" className='text-[#f2ede5]'>cookies</a>
+                <p className="text-[#b1a696] text-[0.7rem]">
+                    Este site utiliza <a href="#" className="text-[#f2ede5]">cookies</a>
                 </p>
-                <p className='text-[#b1a696] text-[0.7rem]'>
-                    All rights reserved © <a href="#" className='text-[#f2ede5]'>2025</a>
+                <p className="text-[#b1a696] text-[0.7rem]">
+                    Todos os direitos reservados {"\u00A9"} <a href="#" className="text-[#f2ede5]">2026</a>
                 </p>
             </div>
 
-            <div className='footer-title w-full text-center'>
-                <h1 className='text-[18vw] font-bold'>
-                    Capsules<sub>®</sub>
+            <div className="footer-title w-full text-center">
+                <h1 className="text-[14vw] font-bold">
+                    Vila Refúgio<sub>{"\u00AE"}</sub>
                 </h1>
             </div>
         </section>

@@ -1,25 +1,24 @@
 import { useGSAP } from "@gsap/react";
-import gsap, { SplitText } from "gsap/all";
+import gsap from "gsap/all";
 import { useMediaQuery } from "react-responsive";
 import { chooseLinesLG, chooseLinesSM } from "../../constants/welcome";
 
 const Choose = () => {
-
     const isMobD = useMediaQuery({
         query: "(max-width:768px)",
     });
     const chooseLines = isMobD ? chooseLinesSM : chooseLinesLG;
 
     useGSAP(() => {
-
-        const lines = gsap.utils.toArray(".choose-title-clip");
+        const q = gsap.utils.selector(".choose-section");
+        const lines = q(".choose-title-clip");
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".choose-section",
                 start: "top 75%",
                 end: "bottom 100%",
-                scrub: true,
+                scrub: 0.8,
                 // markers: true,
             },
         });
@@ -30,16 +29,14 @@ const Choose = () => {
             ease: "power1.inOut"
         });
 
-        // Animate the div height
         if (!isMobD) {
             tl.fromTo(
                 ".title-part",
-                { height: "10vh" },
-                { height: `${isMobD ? "22vh" : "50vh"}`, ease: "none" }
+                { height: "clamp(7rem, 13.5vw, 9.5rem)" },
+                { height: "46vh", ease: "none" }
             );
         }
 
-        // Animate text reveal — run *at the same time*
         tl.to(
             lines,
             {
@@ -48,7 +45,7 @@ const Choose = () => {
                 stagger: 0.2,
                 duration: 1,
             },
-            "<" // 👈 runs at the same time as the previous animation
+            "<"
         );
 
         if (!isMobD) {
@@ -60,45 +57,37 @@ const Choose = () => {
     });
 
     return (
-        <section className="choose-section w-full h-dvh p-8 pt-10">
-            <p className='text-[.7rem] text-[#eae5dd] choose-subtitle'>Discover Available Capsule<span>®</span></p>
-            <div className="lg:mt-10 mt-7 title-part origin-bottom ">
-                {
-                    chooseLines.map((line, index) => (
-                        <h1 key={index} className={`choose-heading text-[#f4efe7] lg:text-[9.5rem] text-[3rem] leading-[0.9]`} font-medium tracking-tighter choose-title>
-                            <span className={`choose-title-break ${index == 1 ? "lg:pb-3 pb-2" : ""}`}>{line}<span className={`choose-title-clip ${index == 1 ? "lg:pb-3 pb-2" : ""}`}>{line}</span></span>
-                        </h1>
-                    ))
-                }
+        <section id="chales-intro" className="choose-section">
+            <p className="choose-subtitle">Descubra os Nossos Chales Exclusivos<span>®</span></p>
+
+            <div className="title-part">
+                {chooseLines.map((line, index) => (
+                    <h1 key={index} className="choose-heading">
+                        <span className="choose-title-break">
+                            {line}
+                            <span className="choose-title-clip">{line}</span>
+                        </span>
+                    </h1>
+                ))}
             </div>
-            <div className="choose-sec w-full flex lg:flex-row flex-col justify-center items-start gap-10 lg:mt-0">
-                <div className='lg:w-1/2 w-full text-[#b1a696] lg:text-[2rem] text-[1rem] md:leading-[1.1] lg:mt-0 mt-8 lg:pr-16'>
-                    <p>You can choose one of three premium capsule houses in our offer. Each of our capsules provides the highest quality and meets the standards adjusted to your needs. Choose the one you like.</p>
+
+            <div className="choose-sec">
+                <div className="choose-copy">
+                    <p>Voce pode escolher um dos tres chales premium em nossa reserva. Cada refugio oferece o mais alto padrao de conforto e sofisticacao ajustado aos seus desejos de descanso. Escolha o seu favorito.</p>
                 </div>
-                <div className='lg:w-1/2 w-full'>
-                    <div className=" lg:w-[30%] w-[60%]">
-                        <p className="text-[.7rem] text-[#eae5dd]">All Capsules® houses—has built
-                            based on the same rules:</p>
+
+                <div className="choose-pill-column">
+                    <div className="choose-pill-caption">
+                        <p>Todos os chales da Vila Refugio® foram projetados sob os mesmos pilares:</p>
                     </div>
-                    <div className="flex flex-1 flex-wrap justify-start items-start gap-2 mt-8">
-                        <div className="border-[1px] border-[#b1a696] text-[#b1a696] lg:text-[2rem] px-[20px] py-[4px] rounded-full">
-                            Sustainable
-                        </div>
-                        <div className="border-[1px] border-[#f4efe7] text-[#f4efe7] lg:text-[2rem] px-[20px] py-[4px] rounded-full">
-                            Nature—Care
-                        </div>
-                        <div className="border-[1px] border-[#b1a696] text-[#b1a696] lg:text-[2rem] px-[20px] py-[4px] rounded-full">
-                            Smart
-                        </div>
-                        <div className="border-[1px] border-[#f4efe7] text-[#f4efe7] lg:text-[2rem] px-[20px] py-[4px] rounded-full">
-                            Privacy
-                        </div>
-                        <div className="border-[1px] border-[#b1a696] text-[#b1a696] lg:text-[2rem] px-[20px] py-[4px] rounded-full">
-                            Spacious
-                        </div>
-                        <div className="border-[1px] border-[#f4efe7] text-[#f4efe7] lg:text-[2rem] px-[20px] py-[4px] rounded-full">
-                            Glassed-in
-                        </div>
+
+                    <div className="choose-pills">
+                        <div className="choose-pill is-muted">Sustentavel</div>
+                        <div className="choose-pill is-bright">Preservacao</div>
+                        <div className="choose-pill is-muted">Tecnologico</div>
+                        <div className="choose-pill is-bright">Privacidade</div>
+                        <div className="choose-pill is-muted">Espacoso</div>
+                        <div className="choose-pill is-bright">Paredes de Vidro</div>
                     </div>
                 </div>
             </div>

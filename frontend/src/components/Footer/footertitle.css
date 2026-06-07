@@ -1,35 +1,44 @@
 .footer-title {
     position: absolute;
-    top: 60%;
+    top: 58%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
     z-index: 2;
-    overflow: hidden;
+    width: 100%;
+    overflow: visible;
+    text-align: center;
+    transform: translate(-50%, -50%);
 }
 
 .footer-title h1 {
     position: relative;
-    line-height: 1;
     color: #f4efe7;
+    line-height: 1.2;
+    letter-spacing: 0;
+    padding-bottom: 0.24em;
 }
 
 .ftChar {
+    position: relative;
     display: inline-block;
     overflow: hidden;
-    position: relative;
+    padding-bottom: 0.32em;
+    margin-bottom: -0.2em;
 }
 
-.ftChar>span {
+.ftChar > span {
     display: inline-block;
     will-change: transform;
 }
 
-/* Specific styling for the ® symbol */
-.footer-title h1 sub.ftChar {
-    /* font-size: 0.5em; */
-    /* Make ® smaller */
-    vertical-align: super;
-    bottom: 0;
+.footer-title h1 sub {
+    position: relative;
+    top: -3.45em;
+    display: inline-block;
+    font-size: 0.18em;
+    line-height: 1;
+    vertical-align: baseline;
+}
+
+.footer-title h1 sub span {
+    display: inline-block;
 }

@@ -8,29 +8,39 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Dependency directories
-node_modules
+node_modules/
 
 # Build output
-dist
-dist-ssr
+dist/
+dist-ssr/
+.vite/
+coverage/
 
 # Local environment files
 *.local
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
 
-# Editor settings
+# Local audit and screenshot artifacts
+screenshots/
+audit-*/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Editor and OS files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
-
-# OS / IDE files
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# Optional: ignore lockfiles if you use only one package manager
-# yarn.lock
-# pnpm-lock.yaml
-# package-lock.json

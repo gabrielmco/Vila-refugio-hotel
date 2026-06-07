@@ -1,13 +1,14 @@
-/* Marquee Text Component Styles */
-
 .marquee-text-container {
     display: flex;
     align-items: center;
+    width: 100%;
+    overflow: hidden;
+    padding-block: clamp(0.7rem, 1.5vw, 1.6rem);
 }
 
 .marquee-text-move {
     display: flex;
-    /* padding: 3vw 0; */
+    width: max-content;
     background-color: transparent;
 }
 
@@ -16,14 +17,17 @@
     flex-shrink: 0;
     align-items: center;
     gap: 3vw;
-    /* padding: 2px 1.5vw; */
     transform: translateX(-100%);
+    overflow: visible;
 }
 
 .marquee-text-marquee h1 {
-    font-size: 11vw;
-    color: #f4efe7;
-    font-weight: 500;
     margin: 0;
+    color: #f4efe7;
+    font-size: clamp(4rem, 11vw, 12rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: 0;
+    padding-bottom: 0.12em;
     white-space: nowrap;
 }

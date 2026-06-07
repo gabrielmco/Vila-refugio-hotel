@@ -1,15 +1,12 @@
 import gsap from "gsap/all";
-import smoke from "../../assets/smoke_final.mp4";
-import mobileHeroBg from "../../assets/hero-mobile.png"
+import heroChalet from "../../assets/hero_chalet.webp";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
 
 const Hero = () => {
-
     const isMobHero = useMediaQuery({
         query: "(max-width:768px)",
     });
-
 
     useGSAP(() => {
         if (!isMobHero) {
@@ -23,62 +20,50 @@ const Hero = () => {
                     start: "top top",
                     end: "bottom top",
                     scrub: 1.5,
-                    // markers: true
-                }
+                },
             });
-        };
+        }
     }, [isMobHero]);
 
     return (
-        <section className="hero-section w-dvw md:h-dvh h-[100vh] md:p-2 p-2.5 mb-20">
+        <section className="hero-section w-dvw md:h-dvh h-[100svh] md:p-2 p-2.5 mb-20">
             <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden">
-                <div className="responsive-mobile">
-                    {/* Background image (down layer) */}
-                    <div className="hero-img absolute inset-0 bg-[url('./assets/cap1.png')] bg-no-repeat bg-cover bg-center z-0 md:block hidden" />
-
-                    {/* Mobile image fallback */}
-                    <div className="block lg:hidden mt-6 mb-6">
+                <div className="absolute inset-0 w-full h-full">
+                    <div className="hero-img absolute inset-0 w-full h-full z-0">
                         <img
-                            src={mobileHeroBg}
-                            alt="mobile bg"
-                            className="w-full rounded-[2rem] object-cover shadow-[0_-25px_45px_-10px_rgba(255,0,0,0.15)]"
+                            src={heroChalet}
+                            alt="Vila Refúgio"
+                            className="w-full h-full object-cover object-center"
+                            loading="eager"
+                            fetchPriority="high"
                         />
+                        <div className="absolute inset-0 bg-black/40 z-1" />
                     </div>
-
-                    {/* Smoke video (upper layer) */}
-                    <video
-                        src={smoke}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 md:w-full md:h-full object-cover z-10 pointer-events-none object-center opacity-50 mix-blend-hard-light md:top-0 top-[5%] h-[90%]  rounded-[2rem] md:px-0"
-                    ></video>
                 </div>
-                <div className="p-4 flex flex-col md:justify-center">
-                    <div className="relative h-dvh">
+                <div className="p-4 flex flex-col md:justify-center relative z-10 h-full">
+                    <div className="relative h-full">
                         <h1
-                            className="text-[#f4efe7] text-start text-6xl md:text-9xl font-bold tracking-wider lg:absolute  lg:left-2"
-                            style={{ textShadow: '2px 2px 4px #aaa' }}
+                            className="text-[#f4efe7] text-start text-[clamp(4.6rem,18vw,6.8rem)] leading-[0.88] md:text-9xl md:leading-none font-bold tracking-[-0.05em] md:tracking-wider lg:absolute lg:left-2"
+                            style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.6)" }}
                         >
-                            Capsules®
+                            Vila Refúgio®
                         </h1>
 
-                        <div className="w-full h-auto absolute  top-24 md:bottom-[8%] lg:bottom-[9%] flex md:flex-row flex-col md:justify-between md:items-end">
+                        <div className="w-full h-auto absolute bottom-7 md:bottom-[8%] lg:bottom-[9%] left-0 right-0 flex md:flex-row flex-col md:justify-between md:items-end">
                             <h2
-                                className="text-start lg:mt-0 md:text-[#f4efe7] text-[#b1a696] text-2xl font-bold md:tracking-wider leading-5 flex flex-col gap-1"
-                                style={{ textShadow: '2px 2px 4px #000' }}
+                                className="text-start lg:mt-0 md:text-[#f4efe7] text-[#f4efe7] text-[1.55rem] md:text-2xl font-bold md:tracking-wider leading-[1.02] flex flex-col gap-1"
+                                style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
                             >
-                                <span>Closer to</span>
-                                <span>Nature—Closer</span>
-                                <span>to Yourself</span>
+                                <span>Mais perto da</span>
+                                <span>Natureza — Mais perto</span>
+                                <span>de você</span>
                             </h2>
 
                             <p
-                                className="md:w-[20%] w-[80%] text-[#f4efe7] text-[0.7rem] font-bold  md:font-medium tracking-wide lg:text-end mt-2 text-justify"
-                                style={{ textShadow: '2px 2px 4px #000' }}
+                                className="md:w-[25%] w-[92%] text-[#f4efe7] text-[0.78rem] font-bold md:font-medium tracking-wide lg:text-end mt-3 text-left md:text-justify md:pr-4"
+                                style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
                             >
-                                Spend unforgettable and remarkable time in the Californian desert with—Capsules.
+                                Viva momentos inesquecíveis e reconecte-se com o que realmente importa em nossos chalés de luxo integrados à Mata Atlântica.
                             </p>
                         </div>
                     </div>
